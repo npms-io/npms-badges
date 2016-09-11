@@ -3,3 +3,12 @@ node_js:
   - "4"
   - "6"
 script: "npm run test-travis"
+sudo: false
+addons:
+  apt:
+    sources:
+    - ubuntu-toolchain-r-test
+    packages:
+    - g++-4.8
+before_install:
+  - export CXX=g++-4.8
