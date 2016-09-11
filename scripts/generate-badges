@@ -70,7 +70,7 @@ function generateBadge(score, style) {
 
 // ----------------------------------------------
 
-const scores = range(1, 100);
+const scores = range(1, 101);
 const styles = ['flat', 'flat-square', 'plastic'];
 
 scores.push('unknown');  // Render also an unknown badge
