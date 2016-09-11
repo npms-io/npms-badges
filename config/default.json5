@@ -1,0 +1,21 @@
+{
+    // Databases & similar stuff
+    elasticsearch: {
+        host: 'http://127.0.0.1:9200',
+        requestTimeout: 15000,
+        apiVersion: '2.3',
+        log: null,
+    },
+
+    // server.listen() params
+    listen: {
+        hostname: '127.0.0.1',
+        port: 3001,
+        backlog: null,
+    },
+
+    // App config that will be passed to index.js
+    app: {
+        maxAge: 60,  // cache badges for 1 minute
+    }
+}

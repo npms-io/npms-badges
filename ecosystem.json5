@@ -1,0 +1,25 @@
+// This is the pm2 configuration file for npms-badges
+{
+    apps: [
+        {
+            name: 'npms-badges',
+            script: './server.js',
+            instances: 3,
+            env : { NODE_ENV: 'production' },
+            max_memory_restart: '1500M'
+        },
+    ],
+    deploy: {
+        production: {
+            user: 'www',
+            host: '212.47.226.136',
+            ref: 'origin/master',
+            repo: 'https://github.com/npms-io/npms-badges.git',
+            path: '/home/www/npms-badges',
+            'post-deploy': '\
+cp ../local.json5 ./config/ && \
+npm update --loglevel http --production && \
+pm2 startOrRestart ecosystem.json5 --env production',
+        },
+    },
+}

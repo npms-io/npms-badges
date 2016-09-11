@@ -1,0 +1,83 @@
+#!/usr/bin/env node
+
+'use strict';
+
+const range = require('lodash/range');
+const Promise = require('bluebird');
+const mkdirp = Promise.promisify(require('mkdirp'));
+const badge = Promise.promisify(require('gh-badges'));
+const writeFile = Promise.promisify(require('fs').writeFile);
+const sharp = require('sharp');
+
+const dir = `${__dirname}/../badges`;
+
+function getBadgeColorscheme(score) {
+    if (typeof score !== 'number') {
+        return 'lightgrey';
+    }
+    if (score > 90) {
+        return 'brightgreen';
+    }
+    if (score > 75) {
+        return 'green';
+    }
+    if (score > 60) {
+        return 'yellowgreen';
+    }
+    if (score > 40) {
+        return 'yellow';
+    }
+
+    return 'red';
+}
+
+function generateBadge(score, style) {
+    // Generate svg
+    return Promise.try(() => {
+        const file = `${score}/${score}-${style}.svg`;
+
+        console.log(`Generating ${file}`);
+
+        return new Promise((resolve, reject) => {
+            badge({ text: ['npms score', score], colorscheme: getBadgeColorscheme(score), template: style }, (svg, err) => {
+                if (err) {
+                    reject(err);
+                } else {
+                    resolve(svg);
+                }
+            });
+        })
+        .tap((svg) => writeFile(`${dir}/${file}`, svg));
+    })
+    // Generate png
+    .then((svg) => {
+        const file = `${score}/${score}-${style}.png`;
+
+        console.log(`Generating ${file}`);
+
+        return new Promise((resolve, reject) => {
+            sharp(new Buffer(svg))
+            .toFile(`${dir}/${file}`, (err) => {
+                if (err) {
+                    reject(err);
+                } else {
+                    resolve();
+                }
+            });
+        });
+    });
+}
+
+// ----------------------------------------------
+
+const scores = range(1, 100);
+const styles = ['flat', 'flat-square', 'plastic'];
+
+scores.push('unknown');  // Render also an unknown badge
+
+Promise.each(scores, (score) => {
+    return mkdirp(`${dir}/${score}`)
+    .then(() => Promise.each(styles, (style) => generateBadge(score, style)));
+})
+.then(() => console.log('Done!'))
+.done();
