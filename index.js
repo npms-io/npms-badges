@@ -7,12 +7,11 @@ const koaPino = require('koa-pino-logger');
 const responseTime = require('koa-response-time');
 const error = require('./lib/middleware/error');
 const notFound = require('./lib/middleware/not-found');
-const routeHandler = require('./lib/routeHandler');
-
-const log = logger.child({ module: 'index' });
+const route = require('./lib/route');
 
 module.exports = (config, esClient) => {
     const app = koa();
+    const log = logger.child({ module: 'index' });
 
     // Middleware
     app.use(responseTime());
@@ -21,7 +20,7 @@ module.exports = (config, esClient) => {
     app.use(koaPino({ name: 'npms-badges', level: logger.level, serializers: logger.serializers }));
 
     // App route handler
-    app.use(routeHandler(config, esClient));
+    app.use(route(config, esClient));
 
     // Log errors
     app.on('error', (err) => log.error({ err }, err.message));
