@@ -10,8 +10,8 @@ The badge generator that generates [npms.io](https://npms.io) score badges.
 The URL and specifications are based on [shields.io](https://shields.io):
 
 - ![npms score](https://badges.npms.io/cross-spawn.svg) https://badges.npms.io/cross-spawn.svg
-- ![npms score](https://badges.npms.io/cross-spawn.svg?style=flat) https://badges.npms.io/cross-spawn.svg?style=flat
-- ![npms score](https://badges.npms.io/cross-spawn.svg?style=flat) https://badges.npms.io/cross-spawn.svg?style=plastic
+- ![npms score](https://badges.npms.io/cross-spawn.svg?style=flat-square) https://badges.npms.io/cross-spawn.svg?style=flat-square
+- ![npms score](https://badges.npms.io/cross-spawn.svg?style=plastic) https://badges.npms.io/cross-spawn.svg?style=plastic
 
 
 ## Development
