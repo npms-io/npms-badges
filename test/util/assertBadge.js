@@ -4,8 +4,8 @@ const fs = require('fs');
 const expect = require('chai').expect;
 const badgeVault = require('../../lib/util/badgeVault');
 
-function assertBadge(buffer, value, options) {
-    const score = typeof value === 'number' ? value / 100 : null;
+function assertBadge(buffer, percentage, options) {
+    const score = typeof percentage === 'number' ? percentage / 100 : null;
     const badgeInfo = badgeVault.info(score, options);
 
     expect(buffer.toString()).to.equal(fs.readFileSync(badgeInfo.filePath).toString());

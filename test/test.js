@@ -199,7 +199,7 @@ describe('scores, formats and styles', () => {
         .expect(200)
         .then((res) => {
             expect(res.headers['content-type']).to.contain('json');
-            expect(res.body).to.eql({ name: 'npms score', value: 89 });
+            expect(res.body).to.eql({ name: 'npms score', value: '89%' });
             expect(nock.isDone()).to.equal(true);
         });
     });
