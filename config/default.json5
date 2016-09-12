@@ -16,6 +16,7 @@
 
     // App config that will be passed to index.js
     app: {
-        maxAge: 60,  // cache badges for 1 minute
+        maxAge: 60,         // cache badges for 1 minute
+        badgesRevision: 1,  // badges revision number to be used in ETags
     }
 }
