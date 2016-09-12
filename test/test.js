@@ -147,7 +147,7 @@ describe('cache', () => {
 
         return request
         .get('/gulp.svg')
-        .set('If-None-Match', `"${badgeInfo.id}"`)
+        .set('If-None-Match', `W/"${badgeInfo.id}"`)
         .expect(304)
         .then((res) => {
             expect(res.body).to.be.empty;
