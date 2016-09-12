@@ -115,7 +115,7 @@ describe('cache', () => {
         .get('/gulp.svg')
         .expect(200)
         .then((res) => {
-            expect(res.headers['cache-control']).to.equal(`public,max-age=${config.get('app').maxAge}`);
+            expect(res.headers['cache-control']).to.equal(`public,max-age=${config.get('app.maxAge')}`);
             expect(nock.isDone()).to.equal(true);
         });
     });
@@ -143,7 +143,7 @@ describe('cache', () => {
             _source: { score: { final: 0.8 } },
         });
 
-        const badgeInfo = badgeVault.info(0.8, { format: 'svg' });
+        const badgeInfo = badgeVault.info(0.8, { format: 'svg', revision: config.get('app.revision') });
 
         return request
         .get('/gulp.svg')
