@@ -11,10 +11,7 @@ const sharp = require('sharp');
 
 const dir = `${__dirname}/../badges`;
 
-function getBadgeColorscheme(score) {
-    if (typeof score !== 'number') {
-        return 'lightgrey';
-    }
+function getColorschemeForScore(score) {
     if (score > 90) {
         return 'brightgreen';
     }
@@ -35,11 +32,12 @@ function generateBadge(score, style) {
     // Generate svg
     return Promise.try(() => {
         const file = `${score}/${score}-${style}.svg`;
-
-        console.log(`Generating ${file}`);
+        const isUnknown = typeof score !== 'number';
+        const value = !isUnknown ? `${score}%` : 'unknown';
+        const colorscheme = !isUnknown ? getColorschemeForScore(score) : 'lightgrey';
 
         return new Promise((resolve, reject) => {
-            badge({ text: ['npms score', score], colorscheme: getBadgeColorscheme(score), template: style }, (svg, err) => {
+            badge({ text: ['npms score', value], colorscheme, template: style }, (svg, err) => {
                 if (err) {
                     reject(err);
                 } else {
