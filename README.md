@@ -18,7 +18,8 @@ The `.png` and `.svg` extensions are also available.
 
 ## Development
 
-Simply spawn the server by running `$ npm run start-dev`.
+Make sure you got a Elasticsearch instance running and filled with analysis data.
+Then simply spawn the server by running `$ npm run start-dev`.
 
 
 ## Deploys
