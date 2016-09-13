@@ -13,7 +13,7 @@ The URL and specifications are based on [shields.io](https://shields.io):
 ![npms score](https://badges.npms.io/cross-spawn.svg?style=flat-square) - https://badges.npms.io/cross-spawn.svg?style=flat-square   
 ![npms score](https://badges.npms.io/cross-spawn.svg?style=plastic) - https://badges.npms.io/cross-spawn.svg?style=plastic
 
-The `.png` and `.svg` extensions are also available.
+The `.png` and `.json` extensions are also available.
 
 
 ## Development
