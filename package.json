@@ -45,7 +45,7 @@
     "node": ">=4.0.0"
   },
   "bin": {
-    "npms-api": "./server.js"
+    "npms-badges": "./server.js"
   },
   "devDependencies": {
     "@satazor/eslint-config": "^3.0.0",
@@ -60,6 +60,6 @@
     "nodemon": "^1.9.1",
     "supertest": "^2.0.0",
     "supertest-as-promised": "^4.0.0",
-    "svg2png": "^3.1.1"
+    "svg2png": "^4.0.0"
   }
 }
