@@ -16,7 +16,7 @@ afterEach(() => nock.cleanAll());
 describe('behavior', () => {
     it('should round score and display appropriate badge', () => {
         nock('http://127.0.0.1:9200')
-        .get('/npms-current/module/gulp')
+        .get('/npms-current/score/gulp')
         .query({ _source: 'score.final' })
         .reply(200, {
             _source: { score: { final: 0.888 } },
@@ -32,9 +32,9 @@ describe('behavior', () => {
         });
     });
 
-    it('should render unknown badge if module does not exist', () => {
+    it('should render unknown badge if score does not exist', () => {
         nock('http://127.0.0.1:9200')
-        .get('/npms-current/module/gulp')
+        .get('/npms-current/score/gulp')
         .query({ _source: 'score.final' })
         .reply(404, {});
 
@@ -50,7 +50,7 @@ describe('behavior', () => {
 
     it('should render unknown badge if score is not yet calculated', () => {
         nock('http://127.0.0.1:9200')
-        .get('/npms-current/module/gulp')
+        .get('/npms-current/score/gulp')
         .query({ _source: 'score.final' })
         .reply(200, {});
 
@@ -75,7 +75,7 @@ describe('errors & validation', () => {
         });
     });
 
-    it('should fail on invalid module name', () => {
+    it('should fail on invalid score name', () => {
         return request
         .get('/_foo.svg')
         .expect(400, { code: 'INVALID_PARAMETER', message: 'name cannot start with an underscore ("_foo")' });
@@ -105,7 +105,7 @@ describe('errors & validation', () => {
 describe('cache', () => {
     it('should set cache-control headers to cache badges', () => {
         nock('http://127.0.0.1:9200')
-        .get('/npms-current/module/gulp')
+        .get('/npms-current/score/gulp')
         .query({ _source: 'score.final' })
         .reply(200, {
             _source: { score: { final: 0.8 } },
@@ -122,7 +122,7 @@ describe('cache', () => {
 
     it('should set cache-control headers to not cache unknown badges', () => {
         nock('http://127.0.0.1:9200')
-        .get('/npms-current/module/gulp')
+        .get('/npms-current/score/gulp')
         .query({ _source: 'score.final' })
         .reply(404);
 
@@ -137,7 +137,7 @@ describe('cache', () => {
 
     it('should respect ETag', () => {
         nock('http://127.0.0.1:9200')
-        .get('/npms-current/module/gulp')
+        .get('/npms-current/score/gulp')
         .query({ _source: 'score.final' })
         .reply(200, {
             _source: { score: { final: 0.8 } },
@@ -166,7 +166,7 @@ describe('scores, formats and styles', () => {
             scores.forEach((score) => {
                 it(`should output a ${style} ${format} image for score ${score}`, () => {
                     nock('http://127.0.0.1:9200')
-                    .get('/npms-current/module/gulp')
+                    .get('/npms-current/score/gulp')
                     .query({ _source: 'score.final' })
                     .reply(200, {
                         _source: { score: { final: score } },
@@ -188,7 +188,7 @@ describe('scores, formats and styles', () => {
     // JSON
     it('should output JSON', () => {
         nock('http://127.0.0.1:9200')
-        .get('/npms-current/module/gulp')
+        .get('/npms-current/score/gulp')
         .query({ _source: 'score.final' })
         .reply(200, {
             _source: { score: { final: 0.888 } },
