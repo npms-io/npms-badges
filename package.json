@@ -1,7 +1,7 @@
 {
   "name": "npms-badges",
   "version": "1.0.0",
-  "description": "npms.io badges",
+  "description": "The score badge service for npms.io",
   "main": "index.js",
   "scripts": {
     "start": "node server.js",
