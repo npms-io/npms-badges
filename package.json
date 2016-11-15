@@ -37,6 +37,7 @@
     "koa-router": "^5.4.0",
     "lodash": "^4.15.0",
     "pino": "^3.0.0",
+    "pino-err-serializer": "^1.0.1",
     "validate-npm-package-name": "^2.2.2",
     "yargs": "^6.0.0"
   },
