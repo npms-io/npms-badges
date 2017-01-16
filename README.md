@@ -40,11 +40,11 @@ $ npm test-cov # to get coverage report
 Released under the [MIT License](http://www.opensource.org/licenses/mit-license.php).
 
 
-[coveralls-image]: https://img.shields.io/coveralls/npms-io/npms-badges.svg
+[coveralls-image]: https://img.shields.io/coveralls/npms-io/npms-badges/master.svg
 [coveralls-url]: https://coveralls.io/r/npms-io/npms-badges
 [david-dm-dev-image]: https://img.shields.io/david/dev/npms-io/npms-badges.svg
 [david-dm-dev-url]: https://david-dm.org/npms-io/npms-badges#info=devDependencies
 [david-dm-image]: https://img.shields.io/david/npms-io/npms-badges.svg
 [david-dm-url]: https://david-dm.org/npms-io/npms-badges
-[travis-image]: http://img.shields.io/travis/npms-io/npms-badges.svg
+[travis-image]: http://img.shields.io/travis/npms-io/npms-badges/master.svg
 [travis-url]: https://travis-ci.org/npms-io/npms-badges
