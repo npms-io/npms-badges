@@ -19,5 +19,5 @@
         maxAge: 60,   // cache badges for 1 minute
         revision: 1,  // badges revision number to be used in ETags
         googleAnalyticsId: null,
-    }
+    },
 }
