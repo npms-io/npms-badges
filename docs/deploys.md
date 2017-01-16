@@ -17,6 +17,38 @@ Before doing the first deploy, you need to setup the server. All commands execut
 - Setup pm2 to run at start by running `$ sudo pm2 startup -u www --hp "/home/www"` on the server
 - Finally run `$ pm2 save` to store the running processes
 
+### Nginx
+
+- Install nginx in the server by running `$ sudo aptitude install nginx`
+- Setup a new site called `badges` in `/etc/nginx/sites-available` with the config exemplified below
+- Enable this site and finally restart nginx by running `$ sudo service nginx restart`
+
+```
+server {
+  listen *:80;
+  server_name badges.npms.io;
+
+  location / {
+    # Proxy to our backend
+    # Need to do this ugly rewrite trickery so that url encoded parameters are left untouched
+    rewrite ^ $request_uri;
+    rewrite ^/(.*) $1 break;
+    return 400;
+    proxy_pass http://127.0.0.1:3001/$uri;
+
+    # Do not buffer, improves performance
+    proxy_buffering    off;
+    proxy_buffer_size  128k;
+    proxy_buffers 100  128k;
+
+    # Fix some headers
+    proxy_set_header  X-Real-IP  $remote_addr;
+    proxy_set_header  X-Forwarded-For $proxy_add_x_forwarded_for;
+    proxy_set_header  Host $http_host;
+  }
+}
+```
+
 
 ## Deploying
 
