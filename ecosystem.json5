@@ -4,6 +4,7 @@
         {
             name: 'npms-badges',
             script: './server.js',
+            args: [],
             instances: 2,
             env : { NODE_ENV: 'production' },
             max_memory_restart: '1500M'
