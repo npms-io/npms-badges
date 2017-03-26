@@ -12,7 +12,7 @@ const argv = yargs
 .version().alias('version', 'v')
 .help('help').alias('help', 'h')
 .command('[options]')
-.usage('Usage: $0 [options]\n\nStarts the API server.')
+.usage('Usage: $0 [options]\n\nStarts the badges server.')
 
 .option('hostname', {
     type: 'string',
