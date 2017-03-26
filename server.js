@@ -11,8 +11,8 @@ const argv = yargs
 .wrap(Math.min(120, yargs.terminalWidth()))
 .version().alias('version', 'v')
 .help('help').alias('help', 'h')
+.command('[options]')
 .usage('Usage: $0 [options]\n\nStarts the API server.')
-.demand(0, 0)
 
 .option('hostname', {
     type: 'string',
