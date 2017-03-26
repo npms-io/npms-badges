@@ -41,8 +41,8 @@ const argv = yargs
 })
 
 .check((argv) => {
-    assert(typeof argv.port === 'number', 'Invalid argument: --port must be a number');
-    assert(!argv.backlog || typeof argv.backlog === 'number', 'Invalid argument: --backlog must be a number');
+    assert(argv.port >= 0, 'Invalid argument: --port must be a number greater than or equal to 0');
+    assert(argv.backlog >= 0, 'Invalid argument: --backlog must be a number greater than or equal to 0');
 
     return true;
 })
