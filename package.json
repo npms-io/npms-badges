@@ -57,7 +57,7 @@
     "mocha": "^3.0.0",
     "nock": "^9.0.0",
     "nodemon": "^1.9.1",
-    "supertest": "^2.0.0",
+    "supertest": "^3.0.0",
     "supertest-as-promised": "^4.0.0",
     "svg2png": "^4.0.0"
   }
