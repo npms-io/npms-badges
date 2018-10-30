@@ -7,7 +7,7 @@
     "start": "node server.js",
     "start-dev": "nodemon --watch server.js --watch index.js --watch lib --watch config --ext js,json5 server.js --log-level debug",
     "generate-badges": "./scripts/generate-badges",
-    "lint": "eslint '{*.js,lib/**/*.js,test/**/*.js}' --ignore-pattern=test/coverage",
+    "lint": "eslint --ignore-path .gitignore '{*.js,lib/**/*.js,test/**/*.js}'",
     "test": "mocha",
     "test-cov": "istanbul cover --dir test/coverage _mocha && echo Coverage lies in test/coverage/lcov-report/index.html",
     "test-travis": "istanbul cover _mocha --report lcovonly"
