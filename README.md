@@ -1,6 +1,6 @@
 # npms-badges
 
-[![Build status][travis-image]][travis-url] [![Coverage status][coveralls-image]][coveralls-url] [![Dependency status][david-dm-image]][david-dm-url] [![Dev dependency status][david-dm-dev-image]][david-dm-dev-url]
+[![Build status][travis-image]][travis-url] [![Coverage status][codecov-image]][codecov-url] [![Dependency status][david-dm-image]][david-dm-url] [![Dev dependency status][david-dm-dev-image]][david-dm-dev-url]
 
 The score badge service for [npms.io](https://npms.io).
 
@@ -40,8 +40,8 @@ $ npm test-cov # to get coverage report
 Released under the [MIT License](http://www.opensource.org/licenses/mit-license.php).
 
 
-[coveralls-image]: https://img.shields.io/coveralls/npms-io/npms-badges/master.svg
-[coveralls-url]: https://coveralls.io/r/npms-io/npms-badges
+[codecov-url]:https://codecov.io/gh/npms-io/npms-badges
+[codecov-image]:https://img.shields.io/codecov/c/github/npms-io/npms-badges/master.svg
 [david-dm-dev-image]: https://img.shields.io/david/dev/npms-io/npms-badges.svg
 [david-dm-dev-url]: https://david-dm.org/npms-io/npms-badges#info=devDependencies
 [david-dm-image]: https://img.shields.io/david/npms-io/npms-badges.svg
