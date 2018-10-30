@@ -9,9 +9,14 @@ const buildApp = require('./util/buildApp');
 const assertBadge = require('./util/assertBadge');
 const badgeVault = require('../lib/util/badgeVault');
 
-const request = supertest.agent(buildApp().listen());
+const server = buildApp().listen();
+const request = supertest.agent(server);
 
 afterEach(() => nock.cleanAll());
+
+after((done) => {
+    server.close(done);
+});
 
 describe('behavior', () => {
     it('should round score and display appropriate badge', () => {
@@ -66,40 +71,40 @@ describe('behavior', () => {
 });
 
 describe('errors & validation', () => {
-    it('should fail on invalid endpoint', () => {
-        return request
+    it('should fail on invalid endpoint', () => (
+        request
         .get('/gulp')
         .expect(404, { code: 'NOT_FOUND', message: 'The specified endpoint does not exist' })
         .then((res) => {
             expect(res.body).to.eql({ code: 'NOT_FOUND', message: 'The specified endpoint does not exist' });
-        });
-    });
+        })
+    ));
 
-    it('should fail on invalid score name', () => {
-        return request
+    it('should fail on invalid score name', () => (
+        request
         .get('/_foo.svg')
-        .expect(400, { code: 'INVALID_PARAMETER', message: 'name cannot start with an underscore ("_foo")' });
-    });
+        .expect(400, { code: 'INVALID_PARAMETER', message: 'name cannot start with an underscore ("_foo")' })
+    ));
 
-    it('should fail on invalid format', () => {
-        return request
+    it('should fail on invalid format', () => (
+        request
         .get('/foo.foo')
         .expect(400, { code: 'INVALID_PARAMETER', message: 'child "format" fails because ["format" must be one of \
-[svg, png, json]]' });
-    });
+[svg, png, json]]' })
+    ));
 
-    it('should fail on invalid style', () => {
-        return request
+    it('should fail on invalid style', () => (
+        request
         .get('/foo.svg?style=foo')
         .expect(400, { code: 'INVALID_PARAMETER', message: 'child "style" fails because ["style" must be one of \
-[flat, flat-square, plastic]]' });
-    });
+[flat, flat-square, plastic]]' })
+    ));
 
-    it('should fail if style is specified with json format', () => {
-        return request
+    it('should fail if style is specified with json format', () => (
+        request
         .get('/foo.json?style=foo')
-        .expect(400, { code: 'INVALID_PARAMETER', message: 'child "style" fails because ["style" is not allowed]' });
-    });
+        .expect(400, { code: 'INVALID_PARAMETER', message: 'child "style" fails because ["style" is not allowed]' })
+    ));
 });
 
 describe('cache', () => {
